@@ -4,7 +4,7 @@
 - 필드오류 처리
 ```
 <div th:if="${errors?.containsKey('globalError')}">
-<input type="text" th:classappend="${errors?.containsKey('itemName')} ? 'fielderror' : _"class="form-control">
+<input type="text" th:classappend="${errors?.containsKey('itemName')} ? 'field-error' : _"class="form-control">
 ```
 
 2) BindingResult
