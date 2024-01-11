@@ -13,6 +13,8 @@ public class BeanValidationTest {
 
     @Test
     void beanValidation(){
+        
+        // 검증기
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 

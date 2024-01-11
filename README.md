@@ -4,7 +4,7 @@
 - 필드오류 처리
 ```
 <div th:if="${errors?.containsKey('globalError')}">
-<input type="text" th:classappend="${errors?.containsKey('itemName')} ? 'field-error' : _"class="form-control">
+<input type="text" th:classappend="${errors?.containsKey('itemName')} ? 'fielderror' : _"class="form-control">
 ```
 
 2) BindingResult
@@ -48,3 +48,21 @@ required.item.itemName: 상품 이름은 필수 입니다.
 #Level2
 required: 필수 값 입니다.
 ```
+
+3) Bean Validation
+``` 
+implementation 'org.springframework.boot:spring-boot-starter-validation' 추가후
+localValidatorFactoryBean 을 글로벌 validator로 등록
+@Validated 어노테이션 추가 시 검증사용 가능.
+```
+- @Valid : 자바표준, @Validated 스프링표준.
+- BeanValidator는 바인딩 실패한 필드는 Bean validation 적용하지 않음.
+- 검증순서 : 필드타입변환시도 > validator 적용
+
+4) Bean Validation err code
+- 오류메시지 변경법은 typeMismatch와 유사,오류코드가 어노테이션이름으로 등록.(NotBlank, NotNull...)
+- object error는 ScriptAssert를 사용.(실무에서는 대응이 어렵.), 자바코드로 검증하는걸 추천.
+
+5) Bean Validation groups
+- @Valid에는 gorups 기능이 없음, @Validated를 사용해야함.
+- 실무에서는 등록, 수정용 객체를 분리 사용하기 떄문에 잘 사용되지 않음.
